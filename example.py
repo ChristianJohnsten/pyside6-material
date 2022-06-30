@@ -10,8 +10,9 @@ class Example(material.MainWindow):
     def __init__(self):
         material.MainWindow.__init__(self)
 
+        self.setWindowTitle("Example app")
         self._init_ui()
-        self._create_menu()
+        # self._create_menu()
 
     def _init_ui(self):
         tab = material.TabWidget()
@@ -26,24 +27,54 @@ class Example(material.MainWindow):
 
     def _create_page1(self):
         main_layout = QtWidgets.QVBoxLayout()
+        upper_layout = QtWidgets.QHBoxLayout()
+        lower_layout = QtWidgets.QHBoxLayout()
 
-        label = QtWidgets.QLabel("Tooltip here")
-        label.setToolTip("This is a tooltip")
-        main_layout.addWidget(label)
+        text_field1 = material.TextField('Text field')
+        text_field2 = material.TextField('Disabled text field')
+        text_field2.setDisabled(True)
+        main_layout.addWidget(text_field1)
+        main_layout.addWidget(text_field2)
+
+        main_layout.addLayout(upper_layout)
+        main_layout.addLayout(lower_layout)
 
         dropdown_layout = QtWidgets.QHBoxLayout()
-        main_layout.addLayout(dropdown_layout)
+        upper_layout.addLayout(dropdown_layout)
         dropdown = material.Dropdown()
         dropdown.addItems(["Option{}".format(i + 1) for i in range(10)])
         dropdown_layout.addWidget(dropdown)
         dropdown_layout.addStretch()
 
-        main_layout.addWidget(QtWidgets.QCheckBox('CheckBox'))
-        text_field1 = material.TextField('Sajtoskorte')
-        text_field2 = material.TextField('Disabled')
-        text_field2.setDisabled(True)
-        main_layout.addWidget(text_field1)
-        main_layout.addWidget(text_field2)
+        label = QtWidgets.QLabel("Hover for tooltip")
+        label.setToolTip("This is a tooltip")
+        upper_layout.addWidget(label)
+
+        lower_layout.addWidget(material.CheckBox('CheckBox'))
+
+        button_layout = QtWidgets.QHBoxLayout()
+        lower_layout.addLayout(button_layout)
+
+        button_layout.addStretch()
+        button_layout.addWidget(material.RaisedButton('BUTTON1'))
+        button2 = material.RaisedButton('BUTTON2')
+        button2.setDisabled(True)
+        button2.setMinimumHeight(35)
+        button_layout.addWidget(button2)
+        button3 = material.RaisedButton('BUTTON3')
+        button3.setMinimumHeight(40)
+        button_layout.addWidget(button3)
+
+
+        button_layout = QtWidgets.QHBoxLayout()
+        main_layout.addLayout(button_layout)
+
+        button_layout.addStretch()
+        button_layout.addWidget(material.FlatButton('FLAT1'))
+        button2 = material.FlatButton('FLAT2')
+        button2.setDisabled(True)
+        button_layout.addWidget(button2)
+
 
         slider_h1 = material.Slider(QtCore.Qt.Horizontal)
         slider_h1.setValue(40)
@@ -61,32 +92,13 @@ class Example(material.MainWindow):
         slider_v2.setDisabled(True)
 
         slider_layout = QtWidgets.QHBoxLayout()
-        slider_layout.addLayout(h_slider_layout)
         slider_layout.addWidget(slider_v1)
         slider_layout.addWidget(slider_v2)
+        slider_layout.addLayout(h_slider_layout)
         slider_layout.addStretch()
         main_layout.addLayout(slider_layout)
 
         main_layout.addStretch()
-
-        button_layout = QtWidgets.QHBoxLayout()
-        main_layout.addLayout(button_layout)
-
-        button_layout.addStretch()
-        button_layout.addWidget(material.RaisedButton('BUTTON1'))
-        button2 = material.RaisedButton('BUTTON2')
-        button2.setDisabled(True)
-        button_layout.addWidget(button2)
-        button_layout.addWidget(material.RaisedButton('BUTTON3'))
-
-        button_layout = QtWidgets.QHBoxLayout()
-        main_layout.addLayout(button_layout)
-
-        button_layout.addStretch()
-        button_layout.addWidget(material.FlatButton('FLAT1'))
-        button2 = material.FlatButton('FLAT2')
-        button2.setDisabled(True)
-        button_layout.addWidget(button2)
 
         page = QtWidgets.QWidget()
         page.setLayout(main_layout)
@@ -176,4 +188,4 @@ if __name__ == '__main__':
 
     win = Example()
     win.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
