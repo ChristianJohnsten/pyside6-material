@@ -1,7 +1,12 @@
 QComboBox {
+    background: rgba(0, 0, 0, 6%);
+    color: @primary_text_color;
     border: none;
     border-bottom : 1px solid rgba(0, 0, 0, 42%);
     padding: 16px 0px 16px 24px;
+}
+QComboBox:hover {
+    background: rgba(0, 0, 0, 16%);
 }
 
 QComboBox::drop-down {
@@ -16,12 +21,12 @@ QComboBox QAbstractItemView::item {
     border: none;
 }
 QComboBox QAbstractItemView::item:hover {
-    background-color: #EEEEEE;
+    background-color: rgba(153, 153, 153, 40%);
     border:none;
-    color: #000000;
+    color: @primary_text_color;
 }
 QComboBox QAbstractItemView {
-    background: transparent;
+    background: @card_color;
     border-top : 1px solid rgba(0, 0, 0, 42%);
     padding: 8px 0px;
     outline: 0;

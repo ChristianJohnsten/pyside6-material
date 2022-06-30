@@ -1,12 +1,16 @@
+QCheckBox {
+    color: @primary_text_color;
+}
+
 QCheckBox::indicator {
-    border: 2px solid rgba(0, 0, 0, 26%);
+    border: 2px solid @secondary_text_color;
 	width: 15px;
 	height: 15px;
 	border-radius: 2px;
     background: none;
 }
 QCheckBox::indicator:hover {
-    border: 2px solid rgba(0, 0, 0, 38%);
+    border: 2px solid @primary_text_color;
 }
 QCheckBox::indicator:checked {
     background: 2px solid @primary_color;

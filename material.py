@@ -150,6 +150,14 @@ class CheckBox(QtWidgets.QCheckBox):
         self.setStyleSheet(style_sheet)
 
 
+class Label(QtWidgets.QLabel):
+    def __init__(self, text):
+        QtWidgets.QLabel.__init__(self, text)
+
+        style_sheet = _get_stylesheet("label.qss")
+        self.setStyleSheet(style_sheet)
+
+
 class Slider(QtWidgets.QSlider):
     # https://material.io/guidelines/components/sliders.html#sliders-continuous-slider
     # TODO implement Swatch color
@@ -206,6 +214,7 @@ class TableView(QtWidgets.QTableView):
 
         style_sheet = _get_stylesheet("table_view.qss")
         self.setStyleSheet(style_sheet)
+        self.setFrameStyle(QtWidgets.QFrame.Plain)
 
 
 class Dropdown(QtWidgets.QComboBox):

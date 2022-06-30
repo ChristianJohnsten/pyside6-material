@@ -46,7 +46,7 @@ class Example(material.MainWindow):
         dropdown_layout.addWidget(dropdown)
         dropdown_layout.addStretch()
 
-        label = QtWidgets.QLabel("Hover for tooltip")
+        label = material.Label("Hover for tooltip")
         label.setToolTip("This is a tooltip")
         upper_layout.addWidget(label)
 
@@ -183,6 +183,7 @@ if __name__ == '__main__':
     QtGui.QFontDatabase.addApplicationFont(r'd:\python_projects\material_test\Roboto\Roboto-Regular.ttf')
     app.setFont(QtGui.QFont("Roboto"))
     app.setProperty(material.PROPERTY_THEME, material.THEME_LIGHT)
+    #app.setProperty(material.PROPERTY_THEME, material.THEME_DARK)
     app.setProperty(material.PROPERTY_PRIMARY_COLOR, "#2196f3")
     app.setProperty(material.PROPERTY_SECONDARY_COLOR, "#68efad")
 

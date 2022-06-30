@@ -1,9 +1,9 @@
 QLineEdit {
     font-family: Roboto;
-    color: rgba(0, 0, 0, 87%);
+    color: @primary_text_color;
     background-color: transparent;
     border : 0px solid blue;
-    border-bottom : 1px solid rgba(0, 0, 0, 42%);
+    border-bottom : 1px solid @secondary_text_color;
     padding-bottom: 8px;
     padding-top: 16px;/*16px;*/
     font-size: 16px;
@@ -11,11 +11,11 @@ QLineEdit {
 QLineEdit:disabled {
     border-style: dotted;
     border-width: 0px 0px 1px 0px;
-    color: rgba(0, 0, 0, 38%)
+    color: @disabled_or_hint_text_color;
 }
 QLineEdit:hover {
     border-width: 0px 0px 2px 0px;
-    border-color: rgba(0, 0, 0, 87%)
+    border-color: @primary_text_color;
 }
 QLineEdit:focus {
     border-width: 0px 0px 2px 0px;

@@ -1,8 +1,15 @@
 QTableView {
     font-size: 13px;
-    color: rgba(0, 0, 0, 87%);
+    color: @primary_text_color;
+    border: 0.5px solid rgba(0, 0, 0, 54%)
 }
 QHeaderView::section {
     font-size: 12px;
     color: rgba(0, 0, 0, 54%);
+    background-color: @card_color;
+    border: 0.5px solid rgba(0, 0, 0, 6%);
+}
+QHeaderView::section:hover {
+    background-color: rgba(0, 0, 0, 12%);
+    color: @primary_text_color;
 }
