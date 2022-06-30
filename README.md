@@ -1,17 +1,17 @@
 # pyside6-material
 Material design for PySide6 (forked from asztalosdani/pyqt4-material and updated to PySide6)
 
-##Example.py
-###Light Mode
+## Example.py
+### Light Mode
 [![Light Mode](https://github.com/chrisddr77/pyside6-material/blob/master/img/example_1.jpg?raw=true "Light Mode")](https://github.com/chrisddr77/pyside6-material/blob/master/img/example_1.jpg "Light Mode")
 
-###Dark Mode
+### Dark Mode
 [![Dark Mode](https://github.com/chrisddr77/pyside6-material/blob/master/img/example_2.jpg?raw=true "Dark Mode")](https://github.com/chrisddr77/pyside6-material/blob/master/img/example_2.jpg "Dark Mode")
 
 
 
-#Usage
-##Standard
+# Usage
+## Standard
 ```python
 import sys
 from PySide6 import QtGui, QtCore, QtWidgets
