@@ -142,6 +142,14 @@ class FlatButton(QtWidgets.QPushButton):
         self.setStyleSheet(style_sheet)
 
 
+class CheckBox(QtWidgets.QCheckBox):
+    def __init__(self, text):
+        QtWidgets.QCheckBox.__init__(self, text)
+
+        style_sheet = _get_stylesheet("checkbox.qss")
+        self.setStyleSheet(style_sheet)
+
+
 class Slider(QtWidgets.QSlider):
     # https://material.io/guidelines/components/sliders.html#sliders-continuous-slider
     # TODO implement Swatch color
