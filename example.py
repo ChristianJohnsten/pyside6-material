@@ -1,5 +1,5 @@
 import sys
-from PyQt4 import QtGui, QtCore
+from PySide6 import QtGui, QtCore, QtWidgets
 
 import material
 from material_shadow import MaterialShadowEffect
@@ -25,20 +25,20 @@ class Example(material.MainWindow):
         self.setMinimumSize(300, 600)
 
     def _create_page1(self):
-        main_layout = QtGui.QVBoxLayout()
+        main_layout = QtWidgets.QVBoxLayout()
 
-        label = QtGui.QLabel("Tooltip here")
+        label = QtWidgets.QLabel("Tooltip here")
         label.setToolTip("This is a tooltip")
         main_layout.addWidget(label)
 
-        dropdown_layout = QtGui.QHBoxLayout()
+        dropdown_layout = QtWidgets.QHBoxLayout()
         main_layout.addLayout(dropdown_layout)
         dropdown = material.Dropdown()
-        dropdown.addItems(["Option{}".format(i + 1) for i in xrange(10)])
+        dropdown.addItems(["Option{}".format(i + 1) for i in range(10)])
         dropdown_layout.addWidget(dropdown)
         dropdown_layout.addStretch()
 
-        main_layout.addWidget(QtGui.QCheckBox('CheckBox'))
+        main_layout.addWidget(QtWidgets.QCheckBox('CheckBox'))
         text_field1 = material.TextField('Sajtoskorte')
         text_field2 = material.TextField('Disabled')
         text_field2.setDisabled(True)
@@ -50,7 +50,7 @@ class Example(material.MainWindow):
         slider_h2 = material.Slider(QtCore.Qt.Horizontal)
         slider_h2.setValue(30)
         slider_h2.setDisabled(True)
-        h_slider_layout = QtGui.QVBoxLayout()
+        h_slider_layout = QtWidgets.QVBoxLayout()
         h_slider_layout.addWidget(slider_h1)
         h_slider_layout.addWidget(slider_h2)
 
@@ -60,7 +60,7 @@ class Example(material.MainWindow):
         slider_v2.setValue(30)
         slider_v2.setDisabled(True)
 
-        slider_layout = QtGui.QHBoxLayout()
+        slider_layout = QtWidgets.QHBoxLayout()
         slider_layout.addLayout(h_slider_layout)
         slider_layout.addWidget(slider_v1)
         slider_layout.addWidget(slider_v2)
@@ -69,7 +69,7 @@ class Example(material.MainWindow):
 
         main_layout.addStretch()
 
-        button_layout = QtGui.QHBoxLayout()
+        button_layout = QtWidgets.QHBoxLayout()
         main_layout.addLayout(button_layout)
 
         button_layout.addStretch()
@@ -79,7 +79,7 @@ class Example(material.MainWindow):
         button_layout.addWidget(button2)
         button_layout.addWidget(material.RaisedButton('BUTTON3'))
 
-        button_layout = QtGui.QHBoxLayout()
+        button_layout = QtWidgets.QHBoxLayout()
         main_layout.addLayout(button_layout)
 
         button_layout.addStretch()
@@ -88,23 +88,23 @@ class Example(material.MainWindow):
         button2.setDisabled(True)
         button_layout.addWidget(button2)
 
-        page = QtGui.QWidget()
+        page = QtWidgets.QWidget()
         page.setLayout(main_layout)
         return page
 
     def _create_page2(self):
-        main_layout = QtGui.QVBoxLayout()
+        main_layout = QtWidgets.QVBoxLayout()
 
         table = material.TableView()
         main_layout.addWidget(table)
         table.setModel(ExampleTableModel())
 
-        page = QtGui.QWidget()
+        page = QtWidgets.QWidget()
         page.setLayout(main_layout)
         return page
 
     def _create_page3(self):
-        main_layout = QtGui.QVBoxLayout()
+        main_layout = QtWidgets.QVBoxLayout()
 
         card1 = material.Card()
         main_layout.addWidget(card1)
@@ -133,10 +133,10 @@ class Example(material.MainWindow):
 
         main_layout.addStretch()
 
-        page = QtGui.QWidget()
+        page = QtWidgets.QWidget()
         page.setLayout(main_layout)
         page.setMaximumWidth(400)
-        scroll_area = QtGui.QScrollArea()
+        scroll_area = QtWidgets.QScrollArea()
         scroll_area.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         scroll_area.setWidget(page)
         return scroll_area
@@ -167,7 +167,7 @@ class ExampleTableModel(QtCore.QAbstractTableModel):
 
 
 if __name__ == '__main__':
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     QtGui.QFontDatabase.addApplicationFont(r'd:\python_projects\material_test\Roboto\Roboto-Regular.ttf')
     app.setFont(QtGui.QFont("Roboto"))
     app.setProperty(material.PROPERTY_THEME, material.THEME_LIGHT)

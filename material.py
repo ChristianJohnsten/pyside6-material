@@ -1,4 +1,4 @@
-from PyQt4 import QtGui, QtCore
+from PySide6 import QtGui, QtCore, QtWidgets
 
 from material_shadow import MaterialShadowEffect
 
@@ -12,7 +12,7 @@ PROPERTY_CLASS = "class"
 
 
 def _get_property(key, default):
-    property_ = str(QtGui.QApplication.instance().property(key).toString())
+    property_ = str(QtWidgets.QApplication.instance().property(key))
     if not property_:
         property_ = default
     return property_
@@ -89,17 +89,17 @@ def _get_stylesheet(file_name):
     return style_sheet
 
 
-class MainWindow(QtGui.QMainWindow):
+class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
-        QtGui.QMainWindow.__init__(self)
+        QtWidgets.QMainWindow.__init__(self)
 
         style_sheet = _get_stylesheet("main_window.qss")
         self.setStyleSheet(style_sheet)
 
 
-class RaisedButton(QtGui.QPushButton):
+class RaisedButton(QtWidgets.QPushButton):
     def __init__(self, *__args):
-        QtGui.QPushButton.__init__(self, *__args)
+        QtWidgets.QPushButton.__init__(self, *__args)
 
         style_sheet = _get_stylesheet("raised_button.qss")
         self.setStyleSheet(style_sheet)
@@ -116,12 +116,12 @@ class RaisedButton(QtGui.QPushButton):
     def enterEvent(self, event):
         if self.isEnabled():
             self.effect.set_elevation(2)
-        QtGui.QPushButton.enterEvent(self, event)
+        QtWidgets.QPushButton.enterEvent(self, event)
 
     def leaveEvent(self, event):
         if self.isEnabled():
             self.effect.set_elevation(0)
-        QtGui.QPushButton.leaveEvent(self, event)
+        QtWidgets.QPushButton.leaveEvent(self, event)
 
     def mousePressEvent(self, event):
         if event.button() == QtCore.Qt.LeftButton:
@@ -134,38 +134,38 @@ class RaisedButton(QtGui.QPushButton):
         super(RaisedButton, self).mouseReleaseEvent(event)
 
 
-class FlatButton(QtGui.QPushButton):
+class FlatButton(QtWidgets.QPushButton):
     def __init__(self, text):
-        QtGui.QPushButton.__init__(self, text.upper())
+        QtWidgets.QPushButton.__init__(self, text.upper())
 
         style_sheet = _get_stylesheet("flat_button.qss")
         self.setStyleSheet(style_sheet)
 
 
-class Slider(QtGui.QSlider):
+class Slider(QtWidgets.QSlider):
     # https://material.io/guidelines/components/sliders.html#sliders-continuous-slider
     # TODO implement Swatch color
     # TODO implement focus highlight
     # TODO implement zero value empty circle
 
     def __init__(self, *args):
-        QtGui.QSlider.__init__(self, *args)
+        QtWidgets.QSlider.__init__(self, *args)
 
         style_sheet = _get_stylesheet("slider.qss")
         self.setStyleSheet(style_sheet)
 
     def mousePressEvent(self, event):
-        QtGui.QSlider.mousePressEvent(self, event)
+        QtWidgets.QSlider.mousePressEvent(self, event)
         self.repaint()  # forcing repaint, because the size of the handle changes, and Qt won't update the bounds
 
     def mouseReleaseEvent(self, event):
-        QtGui.QSlider.mouseReleaseEvent(self, event)
+        QtWidgets.QSlider.mouseReleaseEvent(self, event)
         self.repaint()  # forcing repaint, because the size of the handle changes, and Qt won't update the bounds
 
 
-class TextField(QtGui.QLineEdit):
+class TextField(QtWidgets.QLineEdit):
     def __init__(self, *__args):
-        QtGui.QLineEdit.__init__(self, *__args)
+        QtWidgets.QLineEdit.__init__(self, *__args)
 
         style_sheet = _get_stylesheet("text_field.qss")
         self.setStyleSheet(style_sheet)
@@ -175,9 +175,9 @@ class TextField(QtGui.QLineEdit):
         # layout.addWidget(QtGui.QLabel('sajt'))
 
 
-class TabWidget(QtGui.QTabWidget):
+class TabWidget(QtWidgets.QTabWidget):
     def __init__(self):
-        QtGui.QTabWidget.__init__(self)
+        QtWidgets.QTabWidget.__init__(self)
 
         style_sheet = _get_stylesheet("tab_widget.qss")
         self.setStyleSheet(style_sheet)
@@ -189,31 +189,31 @@ class TabWidget(QtGui.QTabWidget):
         _args = list(args)
         if _args:
             _args[-1] = str(_args[-1]).upper()
-        return QtGui.QTabWidget.addTab(self, page, *_args)
+        return QtWidgets.QTabWidget.addTab(self, page, *_args)
 
 
-class TableView(QtGui.QTableView):
+class TableView(QtWidgets.QTableView):
     def __init__(self, parent=None):
-        QtGui.QTableView.__init__(self, parent)
+        QtWidgets.QTableView.__init__(self, parent)
 
         style_sheet = _get_stylesheet("table_view.qss")
         self.setStyleSheet(style_sheet)
 
 
-class Dropdown(QtGui.QComboBox):
+class Dropdown(QtWidgets.QComboBox):
     def __init__(self, parent=None):
-        QtGui.QComboBox.__init__(self, parent)
+        QtWidgets.QComboBox.__init__(self, parent)
 
         style_sheet = _get_stylesheet("dropdown.qss")
         self.setStyleSheet(style_sheet)
 
         # Qt wtf
         # See https://stackoverflow.com/a/13313676
-        item_delegate = QtGui.QStyledItemDelegate()
+        item_delegate = QtWidgets.QStyledItemDelegate()
         self.setItemDelegate(item_delegate)
 
 
-class Card(QtGui.QFrame):
+class Card(QtWidgets.QFrame):
 
     CLASS_TITLE = "title"
     CLASS_SUBTITLE = "subtitle"
@@ -223,7 +223,7 @@ class Card(QtGui.QFrame):
     DIRECTION_VERTICAL = 2
 
     def __init__(self, parent=None):
-        QtGui.QWidget.__init__(self, parent)
+        QtWidgets.QFrame.__init__(self, parent)
 
         style_sheet = _get_stylesheet("card.qss")
         self.setStyleSheet(style_sheet)
@@ -231,7 +231,7 @@ class Card(QtGui.QFrame):
         self.effect = MaterialShadowEffect(self.parent())
         self.setGraphicsEffect(self.effect)
 
-        self._layout = QtGui.QVBoxLayout()
+        self._layout = QtWidgets.QVBoxLayout()
         self._layout.setSpacing(0)
         self._layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(self._layout)
@@ -239,33 +239,33 @@ class Card(QtGui.QFrame):
     def enterEvent(self, event):
         if self.isEnabled():
             self.effect.set_elevation(8)
-        QtGui.QFrame.enterEvent(self, event)
+        QtWidgets.QFrame.enterEvent(self, event)
 
     def leaveEvent(self, event):
         if self.isEnabled():
             self.effect.set_elevation(0)
-        QtGui.QFrame.leaveEvent(self, event)
+        QtWidgets.QFrame.leaveEvent(self, event)
 
     def add_image(self, image):
-        image_label = QtGui.QLabel()
+        image_label = QtWidgets.QLabel()
         image_label.setPixmap(image)
         self._layout.addWidget(image_label)
         return image_label
 
     def add_title(self, title):
-        title_label = QtGui.QLabel(title)
+        title_label = QtWidgets.QLabel(title)
         title_label.setProperty(PROPERTY_CLASS, self.CLASS_TITLE)
         self._layout.addWidget(title_label)
         return title_label
 
     def add_subtitle(self, subtitle):
-        subtitle_label = QtGui.QLabel(subtitle)
+        subtitle_label = QtWidgets.QLabel(subtitle)
         subtitle_label.setProperty(PROPERTY_CLASS, self.CLASS_SUBTITLE)
         self._layout.addWidget(subtitle_label)
         return subtitle_label
 
     def add_supporting_text(self, supporting_text):
-        supporting_text_label = QtGui.QLabel(supporting_text)
+        supporting_text_label = QtWidgets.QLabel(supporting_text)
         supporting_text_label.setProperty(PROPERTY_CLASS, self.CLASS_SUPPORTING_TEXT)
         supporting_text_label.setWordWrap(True)
         self._layout.addWidget(supporting_text_label)
@@ -273,9 +273,9 @@ class Card(QtGui.QFrame):
 
     def add_actions(self, actions, direction=DIRECTION_HORIZONTAL):
         if direction == self.DIRECTION_HORIZONTAL:
-            button_layout = QtGui.QHBoxLayout()
+            button_layout = QtWidgets.QHBoxLayout()
         else:
-            button_layout = QtGui.QVBoxLayout()
+            button_layout = QtWidgets.QVBoxLayout()
 
         self._layout.addLayout(button_layout)
         button_layout.setSpacing(8)
@@ -285,7 +285,7 @@ class Card(QtGui.QFrame):
             if direction == self.DIRECTION_HORIZONTAL:
                 button_layout.addWidget(action)
             else:
-                row = QtGui.QHBoxLayout()
+                row = QtWidgets.QHBoxLayout()
                 row.addWidget(action)
                 row.addStretch()
                 button_layout.addLayout(row)

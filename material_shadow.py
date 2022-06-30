@@ -1,5 +1,6 @@
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PySide6.QtCore import *
+from PySide6.QtGui import *
+from PySide6.QtWidgets import *
 
 AMBIENT_SHADOW_OPACITY = 255 * 0.08
 KEY_SHADOW_OPACITY = 255 * 0.26
@@ -29,7 +30,8 @@ class MaterialShadowEffect(QGraphicsEffect):
             return
 
         mode = QGraphicsEffect.PadToEffectiveBoundingRect
-        px, offset = self.sourcePixmap(Qt.DeviceCoordinates, mode)
+        offset = QPoint()
+        px = self.sourcePixmap(Qt.DeviceCoordinates, offset, mode)
 
         # return if no source
         if px.isNull():
@@ -45,7 +47,7 @@ class MaterialShadowEffect(QGraphicsEffect):
         _draw_shadow(painter, px, offset, 0, self._ambient_blur(), AMBIENT_SHADOW_OPACITY)
 
         # draw the actual pixmap
-        painter.drawPixmap(offset, px, QRectF())
+        painter.drawPixmap(offset, px)
 
         painter.setWorldTransform(restore_transform)
 
