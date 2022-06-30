@@ -1,0 +1,15 @@
+QCheckBox::indicator {
+    border: 2px solid rgba(0, 0, 0, 26%);
+	width: 15px;
+	height: 15px;
+	border-radius: 2px;
+    background: none;
+}
+QCheckBox::indicator:hover {
+    border: 2px solid rgba(0, 0, 0, 38%);
+}
+QCheckBox::indicator:checked {
+    background: 2px solid @primary_color;
+	border: 2px solid @primary_color;
+	border-image: url(icons/checkmark_white.png) 0 0 0 0 stretch stretch;;
+}
