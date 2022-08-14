@@ -42,7 +42,7 @@ if __name__ == "__main__":
     font.setBold(True)
     app.setFont(font)
     app.setProperty(mt.PROPERTY_THEME, mt.THEME_LIGHT)
-	#app.setProperty(mt.PROPERTY_THEME, mt.THEME_DARK)
+    #app.setProperty(mt.PROPERTY_THEME, mt.THEME_DARK)
     app.setProperty(mt.PROPERTY_PRIMARY_COLOR, "#2196f3")
     app.setProperty(mt.PROPERTY_SECONDARY_COLOR, "#68efad")
 
