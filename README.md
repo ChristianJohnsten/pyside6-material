@@ -1,5 +1,5 @@
 # pyside6-material
-Material design for PySide6 (forked from asztalosdani/pyqt4-material and updated to PySide6)
+Material design for PySide6 (forked from [asztalosdani/pyqt4-material](https://github.com/asztalosdani/pyqt4-material) and updated to PySide6)
 
 ## Example.py
 ### Light Mode
